@@ -17,10 +17,10 @@
 	set linesize 80 
 		
 ** 	Setting filepath and directory
-	global filepath `""C:\Sync\statistics\analysis\a064\versions\version02\""'
+	global filepath `""X:\The University of the West Indies\DataGroup - repo_data\data_p102\version01\2-working\""'
 	cd $filepath
 
-	use "data\fig2_data", clear 
+	use "fig2_data", clear 
 	
 ******************************************
 ** Figure 3   	(Caribbean region pyramid, 1990 and 2015)
@@ -28,7 +28,7 @@
 ******************************************	
 		
 ** bring in SIDS list 
-	insheet using "data\sids.csv", comma clear names
+	insheet using "sids.csv", comma clear names
 	gen country_name =substr(unesco, 4,.)
 	replace country_name =ltrim(country_name)
 	replace country_name = subinstr(country_name, "*", "", .) 
@@ -39,7 +39,7 @@
 	save `sids', replace
 	
 ** bring in country codes
-	insheet using "data\codes.csv", comma clear 	
+	insheet using "codes.csv", comma clear 	
 	replace country_name = "The Bahamas" if country_name == "Bahamas"
 	replace country_name = "Virgin Islands, U.S." if country_name == "United States Virgin Islands"
 
@@ -47,7 +47,7 @@
 	save `caribcodes2', replace
 
 ** bring in GBD  data 
-	insheet using "data\IHME-GBD_2015_DATA-1e3e3f45-1.csv", comma clear names 
+	insheet using "IHME-GBD_2015_DATA-1e3e3f45-1.csv", comma clear names 
 	rename location country_name
 	gen cause_name=cause
 	replace cause_name ="CVDdiabetes" if cause_name =="Cardiovascular diseases" | cause_name =="Diabetes mellitus"

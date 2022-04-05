@@ -20,10 +20,10 @@
 	set linesize 80 
 		
 ** 	Setting filepath and directory
-	global filepath `""C:\Sync\statistics\analysis\a064\versions\version02\""'
+	global filepath `""X:\The University of the West Indies\DataGroup - repo_data\data_p102\version01\2-working\""'
 	cd $filepath
 
-		use "data\fig4_data", clear
+		use "fig4_data", clear
 
 	** graphing
 		gen zero=0

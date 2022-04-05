@@ -15,14 +15,14 @@ qui {
 	set linesize 80 
 		
 ** 	Setting filepath and directory
-	global filepath `""C:\Sync\statistics\analysis\a064\versions\version02\""'
+	global filepath `""X:\The University of the West Indies\DataGroup - repo_data\data_p102\version01\2-working\""'
 	cd $filepath
 
 	capture log close
 	noi log using regional_metrics, replace
 	
 ** bring in data for Figure 1 (compiled earlier) 
-	use "data\fig1_data", clear 
+	use "fig1_data", clear 
 
 ** handling age vars
 	drop age80_100

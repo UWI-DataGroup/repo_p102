@@ -16,13 +16,13 @@
 	set linesize 80 
 		
 ** 	Setting filepath and directory
-	global filepath `""C:\Sync\statistics\analysis\a064\versions\version02\""'
+	global filepath `""X:\The University of the West Indies\DataGroup - repo_data\data_p102\version01\2-working\""'
 	cd $filepath
 
 	capture log close
 	log using country_metrics, replace
 	
-	use "data\fig2_data", clear 
+	use "fig2_data", clear 
 
 	collapse (sum) pop, by(year country_name iso3 age_start1 sex)
 **	 keep if iso3=="BRB" & year==2015
@@ -47,12 +47,13 @@
 	gen fpop_pc = (popfemale/fpop)*100
 	gen mpop_pc = (popmale/mpop)*100
 		
-	merge m:1 country_name using "data\key" 
+	merge m:1 country_name using "key" 
 	drop order 
 
 	sort country_name year
 	egen ordernum2 = group(country_name year)
 
+/*
 
 *******************************************************	
 ** 31-JAN-2018
@@ -303,10 +304,7 @@ preserve
 	
 restore
 
-
-/*
-
-
+*/
 
 *******************************************************	
 ** 31-JAN-2018
@@ -429,7 +427,7 @@ forval x = 1(1)40 {
 ** Percentage point change (so absolute difference)
 ** **************************************************************
 
-drop _merge test ordernum2
+cap drop _merge test ordernum2
 sort country_name year
 egen ordernum3 = group(country_name)
 
@@ -852,7 +850,7 @@ forval x = 1(1)20 {
 		graphregion(c(gs16) ic(gs16) ilw(thin) lw(thin)) 		
 		ysize(15) xsize(7.5)
 		imargin(l=0 r=0)
-		name(countries);
+		name(countries1);
 #delimit cr
 
 ** Page 2
@@ -871,7 +869,7 @@ forval x = 1(1)20 {
 		graphregion(c(gs16) ic(gs16) ilw(thin) lw(thin)) 		
 		ysize(15) xsize(7.5)
 		imargin(l=0 r=0)
-		name(countries);
+		name(countries2);
 #delimit cr
 
 ** Page 3
@@ -889,6 +887,6 @@ forval x = 1(1)20 {
 		graphregion(c(gs16) ic(gs16) ilw(thin) lw(thin)) 		
 		ysize(15) xsize(5)
 		imargin(l=0 r=0)
-		name(countries);
+		name(countries3);
 #delimit cr
 
